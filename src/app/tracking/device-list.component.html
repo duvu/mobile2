@@ -1,0 +1,42 @@
+<ActionBar class="action-bar">
+    <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
+
+    <ActionItem icon="res://navigation/menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()"
+                ios.position="left">
+    </ActionItem>
+    <ActionItem tap="onDelete" android.systemIcon="ic_input_add"
+                ios.systemIcon="4" ios.position="right"
+                text="Add" android.position="actionBar"></ActionItem>
+    <Label class="action-bar-title" text="Device List"></Label>
+</ActionBar>
+
+<GridLayout class="page page-content">
+    <RadListView [items]="events" (itemTap)="onDeviceItemTap($event)" class="list-group">
+        <ng-template tkListItemTemplate let-event="item">
+            <StackLayout class="list-group-item">
+                <GridLayout rows="*, *, *, *" columns="*, *" class="list-group-item-content">
+                    <Label row="0" [text]="event.deviceId" class="text-primary font-weight-bold"></Label>
+                    <Label row="0" col="1" horizontalAlignment="right" class="list-group-item-text m-r-5">
+                        <FormattedString>
+                            <Span text="Spd: " class="text-primary font-weight-bold"></Span>
+                            <Span [text]="event.speedKPH"></Span>
+                            <Span text="/"></Span>
+                            <Span text="Odo: " class="text-primary font-weight-bold"></Span>
+                            <Span [text]="event.odometerKM"></Span>
+                        </FormattedString>
+                    </Label>
+
+                    <StackLayout row="1" class="hr-light m-t-5 m-b-5" colSpan="2"></StackLayout>
+                    <StackLayout orientation="horizontal" row="2" colSpan="2">
+                        <Label [text]= "'Last Event is about '"></Label>
+                        <Label [text]= "distanceToNow(event.timestamp)" class="text-primary font-italic"></Label>
+                    </StackLayout>
+                    <StackLayout row="3" colSpan="2">
+                        <Label [text]="event.address" textWrap="true"></Label>
+                    </StackLayout>
+
+                </GridLayout>
+            </StackLayout>
+        </ng-template>
+    </RadListView>
+</GridLayout>

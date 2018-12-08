@@ -1,0 +1,17 @@
+<ActionBar class="action-bar">
+    <Label class="action-bar-title" text="Login"></Label>
+</ActionBar>
+<ScrollView>
+    <GridLayout columns="*" rows="*" class="page p-t-15">
+        <ActivityIndicator busy="{{isLoading}}" row="0" col="0" horizontalAlignment="center" verticalAlignment="center"></ActivityIndicator>
+
+        <StackLayout col="0" row="0">
+            <TextField class="m-t-10 m-b-10 m-l-15 m-r-15" hint="Email Address" keyboardType="email" autocorrect="false"
+                       autocapitalization="none" [(ngModel)]="username" [disabled]="isLoading"></TextField>
+            <TextField class="m-t-10 m-b-10 m-l-15 m-r-15" hint="Password" secure="true" autocorrect="false" autocapitalization="none"
+                       [(ngModel)]="password" [disabled]="isLoading"></TextField>
+            <Button class="btn btn-primary" text="SIGN IN" (tap)="onSigninButtonTap()"  [disabled]="isLoading"></Button>
+            <Label class="m-t-10 m-b-10 m-l-15 m-r-15 m-x-auto" text="Forgot password?" (tap)="onForgotPasswordTap()" [disabled]="isLoading"></Label>
+        </StackLayout>
+    </GridLayout>
+</ScrollView>
